@@ -1,9 +1,11 @@
+import os
+
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filters
 import requests
 
-TELEGRAM_BOT_TOKEN = "8371850976:AAFaOTOfEbewipk0lg3vn6D2ySL1Iwa7eCo"
-DEEPL_API_KEY = "728bbeb5-3ef0-4ad3-ae72-05ecc9f8a1c3:fx"
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+DEEPL_API_KEY = os.environ["DEEPL_API_KEY"]
 
 
 # ===== 語言指令對照 =====
@@ -74,4 +76,5 @@ app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 app.add_handler(MessageHandler(filters.TEXT, translate))
 
 print("✅ DeepL 多語言翻譯 Bot 已啟動")
+
 app.run_polling()
